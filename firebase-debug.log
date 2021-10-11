@@ -1,0 +1,13 @@
+[debug] [2021-10-11T12:00:58.483Z] ----------------------------------------------------------------------
+[debug] [2021-10-11T12:00:58.484Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\User\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2021-10-11T12:00:58.484Z] CLI Version:   9.20.0
+[debug] [2021-10-11T12:00:58.484Z] Platform:      win32
+[debug] [2021-10-11T12:00:58.485Z] Node Version:  v14.17.3
+[debug] [2021-10-11T12:00:58.485Z] Time:          Mon Oct 11 2021 18:00:58 GMT+0600 (Bangladesh Standard Time)
+[debug] [2021-10-11T12:00:58.485Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-10-11T12:00:58.522Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-10-11T12:00:58.522Z] > authorizing via signed-in user (tonmoytalukder2000@gmail.com)
+[debug] [2021-10-11T12:00:58.522Z] [iam] checking project ema-jhon-simple-tnmy for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-10-11T12:00:58.524Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/ema-jhon-simple-tnmy:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}

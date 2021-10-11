@@ -3,6 +3,12 @@ import { useForm } from "react-hook-form";
 import useAuth from '../../hooks/useAuth';
 import './Shipping.css';
 
+import { useHistory } from 'react-router';
+import useCart from '../../hooks/useCart';
+import useProducts from '../../hooks/useProducts';
+import { clearTheCart, removeFromDb } from '../../utilities/fakedb';
+
+
 const Shipping = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     
@@ -11,6 +17,23 @@ const Shipping = () => {
     const onSubmit = data => {
         console.log(data)
     };
+
+    const [products, setProducts] = useProducts();
+    const [cart, setCart] = useCart(products);
+    const history = useHistory();
+
+
+    const handleRemove = key => {
+        const newCart = cart.filter(product => product.key !== key);
+        setCart(newCart);
+        removeFromDb(key);
+    }
+
+    const handlePlaceOrder = () => {
+        setCart([]);
+        clearTheCart();
+        history.push('/placeorder');
+    }
 
     return (
         <div>
@@ -26,9 +49,8 @@ const Shipping = () => {
 
                 <input defaultValue="" placeholder="Your Phone" {...register("Phone")} />
 
-
-                <input type="submit" />
-
+                <input  onClick={handlePlaceOrder}  className="btn-regular w-auto" type="submit" />
+            
             </form>
         </div>
     );
