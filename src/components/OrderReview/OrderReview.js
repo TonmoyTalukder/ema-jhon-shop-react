@@ -1,19 +1,32 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useCart from '../../hooks/useCart';
 import useProducts from '../../hooks/useProducts';
-import { removeFromDb } from '../../utilities/fakedb';
+import { clearTheCart, removeFromDb } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import ReviewItem from '../ReviewItem/ReviewItem';
+import { useHistory } from 'react-router';
+import grandTotal from '../Cart/Cart';
+
+console.log(grandTotal);
 
 const OrderReview = () => {
     const [products, setProducts] = useProducts();
     const [cart, setCart] = useCart(products);
+    const history = useHistory();
 
     const handleRemove = key => {
         const newCart = cart.filter(product => product.key !== key);
         setCart(newCart);
         removeFromDb(key);
     }
+
+    const handleProceedToShipping = () => {
+        // setCart([]);
+        // clearTheCart();
+        history.push('/shipping');
+    }
+
     return (
         <div className="shop-container">
             <div className="product-container">
@@ -26,7 +39,9 @@ const OrderReview = () => {
                 }
             </div>           
             <div className="cart-container">
-                <Cart cart={cart}></Cart>
+                <Cart cart={cart}>
+                    <button onClick={handleProceedToShipping} className="btn-regular w-auto">Proceed to Shipping</button>
+                </Cart>
             </div>           
         </div>
     );

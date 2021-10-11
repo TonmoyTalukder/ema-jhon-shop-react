@@ -2,8 +2,10 @@ import React from 'react';
 import './Header.css';
 import logo from '../../images/logo.png';
 import { NavLink } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const Header = () => {
+    const {user, logOut} = useAuth();
     return (
         <div className="header">
             <img className="logo" src={logo} alt="" />
@@ -11,6 +13,15 @@ const Header = () => {
                 <NavLink to="/shop">Shop</NavLink>
                 <NavLink to="/review">Order Review</NavLink>
                 <NavLink to="/inventory">Manege Inventory</NavLink>
+                {
+                    user.email ?
+                        <>
+                            <NavLink to="/" className=""><i>{user.displayName}</i> &#8594; </NavLink>
+                            <button onClick={logOut} className="btn btn-outline-light">Log out</button>
+                        </>
+                    :
+                    <NavLink to="/login">Login</NavLink>
+                }
             </nav>
         </div>
     );
